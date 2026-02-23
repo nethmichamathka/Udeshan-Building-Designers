@@ -1,0 +1,7 @@
+{
+  "name": "Udeshan Building Designers",
+  "description": "Corporate website for Udeshan Building Designers, an architectural business based in Gampaha, showcasing their services, contact information, and business details.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
