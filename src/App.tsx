@@ -188,7 +188,7 @@ export default function App() {
         {/* Full background image */}
         <div className="absolute inset-0">
           <img 
-            src="/images/cover.jpg" 
+            src={`${import.meta.env.BASE_URL}images/cover.jpg`} 
             className="w-full h-full object-cover" 
             alt="Architectural Design"
           />
@@ -425,7 +425,7 @@ export default function App() {
               <div className="aspect-square rounded-full border border-white/10 absolute -inset-10 animate-pulse"></div>
               <div className="aspect-square rounded-full border border-white/5 absolute -inset-20"></div>
               <div className="relative z-10 aspect-square rounded-3xl overflow-hidden shadow-2xl rotate-3">
-                <img src="/images/philosophy.jpg" className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Design Philosophy" />
+                <img src={`${import.meta.env.BASE_URL}images/philosophy.jpg`} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" alt="Design Philosophy" />
               </div>
               <div className="absolute -bottom-10 -right-10 bg-orange-500 p-10 rounded-full text-white font-bold text-center shadow-2xl z-20">
                 <div className="text-4xl">15+</div>
