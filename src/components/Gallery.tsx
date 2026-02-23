@@ -3,7 +3,8 @@ import { motion } from 'motion/react';
 
 const PROJECTS = [
   { id: 1, title: "Modern Villa", category: "Architectural", img: `${import.meta.env.BASE_URL}images/project-1.jpg` },
-  { id: 2, title: "Luxury Apartment", category: "3D Design", img: `${import.meta.env.BASE_URL}images/project-2.jpg` },
+  { id: 2, title: "Luxury Apartment", category: "3D Design", i
+    mg: `${import.meta.env.BASE_URL}images/project-2.jpg` },
   { id: 3, title: "Commercial Complex", category: "Construction", img: `${import.meta.env.BASE_URL}images/project-3.jpg` },
   { id: 4, title: "Residential Project", category: "Residential", img: `${import.meta.env.BASE_URL}images/project-4.jpg` },
   { id: 5, title: "Structural Design", category: "Engineering", img: `${import.meta.env.BASE_URL}images/project-5.jpg` },

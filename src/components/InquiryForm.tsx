@@ -1,35 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Send } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+
+// EmailJS configuration - replace these with your actual IDs from https://www.emailjs.com/
+const EMAILJS_SERVICE_ID = 'service_wfpdbbd';
+const EMAILJS_TEMPLATE_ID = 'template_691qa98';
+const EMAILJS_PUBLIC_KEY = 'YWvsUBbfSYnYX07T_';
 
 export const InquiryForm: React.FC = () => {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('submitting');
-    
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      phone: formData.get('phone'),
-      message: formData.get('message'),
-    };
 
     try {
-      const response = await fetch('/api/inquiry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        setStatus('success');
-        setTimeout(() => setStatus('idle'), 5000);
-      } else {
-        setStatus('error');
-      }
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current!,
+        EMAILJS_PUBLIC_KEY
+      );
+      setStatus('success');
+      formRef.current?.reset();
+      setTimeout(() => setStatus('idle'), 5000);
     } catch (error) {
+      console.error('EmailJS error:', error);
       setStatus('error');
     }
   };
@@ -42,7 +39,7 @@ export const InquiryForm: React.FC = () => {
           Thank you for your inquiry! We will get back to you soon.
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
           {status === 'error' && (
             <div className="bg-red-50 text-red-700 p-4 rounded-xl text-center text-sm">
               Failed to send inquiry. Please try again or call us directly.
